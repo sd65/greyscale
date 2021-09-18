@@ -1,0 +1,35 @@
+<html>
+<body>
+	<p id="value"></p>
+	<style>
+		p {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			color: white;
+			font-size: 40px;
+		}
+	</style>
+	<script>
+		let greyscale = 0
+		function display(t = null) {
+			document.getElementById("value").innerText = t
+		}
+		function checkKey(e) {
+			e = e || window.event || {}
+			if (e.keyCode == '37' && greyscale > 0) {
+			   greyscale -= 1
+			}
+			else if (e.keyCode == '39' && greyscale < 256) {
+			   greyscale += 1
+			}
+			document.body.style.backgroundColor  = `rgb(${greyscale}, ${greyscale}, ${greyscale})` 
+			display(greyscale)
+			setTimeout(display, 2000)
+		}
+		document.onkeydown = checkKey
+		checkKey()
+		display("Launch this in a very dark room and press left and right arrows to change the greyscale")
+	</script>
+</body>
+</html>
